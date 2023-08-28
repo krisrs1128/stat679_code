@@ -1,0 +1,136 @@
+---
+title: Geospatial Visualization (II)
+layout: post
+output: 
+  md_document:
+    preserve_yaml: true
+---
+
+_Useful tricks for visualizing geospatial data_
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week7-4.Rmd), [Recording](https://mediaspace.wisc.edu/media/Week+7+-+4A+Geospatial+Visualization+%28II%29/1_cquhy2wg)
+
+```{r, echo = FALSE}
+library(knitr)
+opts_knit$set(base_dir = "/", base.url = "/")
+opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.path = "stat679_notes/assets/week7-4/"
+  )
+```
+
+1. The previous lecture outlined general methods available for visualizing
+spatial and raster datasets. Those methods are used in almost every spatial data
+visualization problem. In contrast, these notes are more like a grab bag of
+tricks — often useful, but don’t expect to use them in every problem.
+
+    ```{r}
+    library(tigris)
+    library(tmap)
+    library(sf)
+    library(patchwork)
+    library(biscale)
+    library(tidyverse)
+    library(tidycensus)
+    ```
+  
+### Vector data packages
+
+1. What if we have data with geographic information (e.g., state names) but
+which are not explicitly georeferenced? In this case, we may be able to link the
+data.frame with a public vector dataset. The Natural Earth project provides a
+rich catalog of vector data searchable by region, and the `rnaturalearth`
+package provides a direct interface to R.
+
+1. For example, we can find the polygon boundaries for all the counties in
+Wisconsin using the code below.
+
+    ```{r}
+    wisconsin <- counties(state = "Wisconsin")
+    tm_shape(wisconsin) +
+      tm_polygons()
+    ```
+
+1. Similarly, we can create a choropleth of household income across all census
+extracts in Dane County retrieved in the previous step.
+
+    ```{r}
+    # sign up for an api key at http://api.census.gov/data/key_signup.html
+    dane <- get_acs(
+      state = "WI",
+      county = "Dane",
+      geography = "tract",
+      variables = "B19013_001", # household income
+      geometry = TRUE
+    )
+    
+    tm_shape(dane) +
+      tm_polygons(col = "estimate", palette = "Purples")
+    ```
+    
+### Transforming Projections
+
+1. An important subtlety of geographic data visualization is that all our maps
+are in 2D, but earth is 3D. The process of associating points on the earth with
+2D coordinates is called “projection.” All projections introduce some level of
+distortion, and there is no universal, ideal projection.
+
+1. A common source of bugs is to use two different projections for the same
+analysis. In this class, we will always use the EPSG:4326 projection, which is
+what is used in most online maps. But in your own projects, you should always
+check that the projections are consistent across data sources. If you find an
+inconsistency, it will be important to “reproject” the data into the same CRS.
+Both `sf` and `terra` have utilities for supporting this.
+
+### Bivariate Choropleths
+
+1.  Choropleths are useful for encoding one data feature across a collection of
+polygons. If we have more than one feature of interest, there is often little we
+can do besides create several choropleths side-by-side, each with its own color
+scales. An important special case is when there are exactly two continuous
+variables of interest.
+
+1. In this case, we can use something called a bivariate choropleth. This
+creates a two-dimensional color palette by blending a pair of color scales.
+Polygons are then encoded using this scheme. For example, in the example below,
+we can see the correlation structure between obesity adn diabetes across
+counties in the US.
+
+    ```{r}
+    health <- read_csv("../examples/week7/week7-3/cdc-diabetes-obesity.csv", na = "No Data") %>%
+      mutate(
+        diabetes_cat = cut(diabetes, 3),
+        obesity_cat = cut(obesity, 3)
+      )
+    us_counties <- counties() %>%
+      mutate(county = str_c(STATEFP, COUNTYFP)) %>%
+      filter(!(STATEFP %in% c("15", "02", "60", "66", "69", "72", "78"))) %>%
+      left_join(health) %>%
+      bi_class(x = diabetes_cat, y = obesity_cat, style = "quantile", dim = 3)
+    ```
+
+    ```{r}
+    map <- us_counties %>%
+      st_simplify(dTolerance = 1000) %>% # speeds up plot by coarsening
+      ggplot() +
+      geom_sf(aes(fill = bi_class), size = 0.1, show.legend = FALSE) +
+      bi_scale_fill(pal = "GrPink", dim = 3) +
+      bi_theme()
+      
+    legend <- bi_legend(pal = "GrPink", dim = 3, xlab = "obesity", ylab = "diabetes")
+    map + inset_element(legend, 0, 0, .3, .3, align_to = "full")
+    ```
+
+### Spatiotemporal Vis
+
+1. What if we have the spatial data measured over time? It is common to use
+faceting, with one facet per timepoint. However, this approach does not scale
+well when there are many timepoints of interest. Some have advocated for the use
+of [time cubes](https://aviz.fr/~bbach/spacetimecubes/Bach2014spacetimecubes.pdf), where a 2D map is repeated along a third time axis. 
+
+<img src="https://github.com/krisrs1128/stat679_code/raw/main/examples/week7/week7-3/time_cube.png" width=500/>
+
+In this class though, we will steer away from 3D visualization. Instead, we will
+focus on approaches that leverage interactivity, specifically using animation or
+linked views. We’ll review some approaches next week.

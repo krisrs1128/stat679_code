@@ -1,0 +1,94 @@
+---
+title: "geo"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(sf)
+library(tmap)
+library(terra)
+library(tidyverse)
+```
+
+
+```{r}
+roads <- read_sf("brasilia_small.geojson")
+tm_shape(roads) +
+  tm_lines()
+```
+
+
+```{r}
+library(terra)
+#path <- "~/Downloads/glaciers_45/G083656E29120N_2021-07-04.tif"
+#im <- rast(path) %>%
+#  stretch()
+```
+
+```{r}
+tm_shape(im) +
+  tm_rgb()
+
+e <- ext(83.62, 83.78, 29.12, 29.22)
+im_crop <- crop(im, e)
+tm_shape(im_crop) +
+  tm_rgb()
+
+tm_shape(im_crop) +
+  tm_rgb(10, 11, 12)
+```
+
+```{r}
+library(sf)
+sf_use_s2(FALSE)
+path <- "~/Desktop/glaciers/lake_labeller/data/raw_data/data/Glacier_2010.shp"
+labels <- read_sf(path)
+labels_subset <- labels %>%
+  st_crop(e)
+```
+
+```{r}
+labels_crop1 <- st_crop(labels, ext(im))
+tm_shape(labels_crop1) +
+  tm_fill()
+
+tm_shape(labels_crop1) +
+  tm_fill(col = "Sub_Basin")
+
+tm_shape(labels_crop1) +
+  tm_fill(col = "Thickness")
+
+tm_shape(labels_crop1) +
+  tm_fill(col = "Thickness") +
+  tm_layout(legend.position = c("left", "top"))
+
+pos <- c("left", "top")
+tm_shape(labels_crop1) +
+  tm_fill(col = "Thickness", palette = "PuRd") +
+  tm_style("grey") +
+  tm_scale_bar(position = pos) +
+  tm_layout(legend.position = pos)
+
+tm_shape(im) +
+  tm_rgb() +
+  tm_shape(labels_crop1) +
+  tm_fill(col = "Thickness", palette = "PuRd") +
+  tm_style("grey") +
+  tm_scale_bar(position = pos) +
+  tm_layout(legend.position = pos)
+
+tm_shape(im_crop) +
+  tm_rgb() +
+  tm_shape(labels) +
+  tm_fill(col = "Thickness", palette = "PuRd") +
+  tm_style("grey") +
+  tm_scale_bar(position = pos) +
+  tm_layout(legend.position = pos)
+
+```
+

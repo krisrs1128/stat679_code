@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-color@3"></script>
+    <link rel="stylesheet" href="imdb.css">
+  </head>
+  <body>
+    <svg height="500" width="700">
+      <g id="circles"/>
+      <g id="axes"/>
+      <g id="table">
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-0pky">Title</th>
+            <th class="tg-0pky">Release Date</th>
+            <th class="tg-0lax">Worldwide Gross</th>
+            <th class="tg-0lax">Genre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="title" class="tg-0pky"></td>
+            <td id="year" class="tg-0pky"></td>
+            <td id="gross" class="tg-0lax"></td>
+            <td id="genre" class="tg-0lax"></td>
+          </tr>
+        </tbody>
+        </table>
+      </g>
+    </svg>
+  </body>
+  <script src="imdb-table.js"></script>
+</html>

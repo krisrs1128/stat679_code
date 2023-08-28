@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap');
+
+#links line {
+  fill: none;
+  stroke: #d3d3d3;
+}
+
+#nodes circle {
+  stroke: none;
+  fill: #8080f0;
+  r: 6.5;
+}
+
+#graph text {
+  font-family: 'Kanit';
+  text-anchor: end;
+}
+
+#bars rect {
+  fill: #f08080;
+}

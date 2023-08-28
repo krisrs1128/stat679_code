@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <link rel="stylesheet" href="modifySelection.css">
+  </head>
+  <body>
+    <svg height=500 width=900>
+      <circle  r=20 cx=50 cy=50 id="changeme" fill="black"/>
+      <g>
+        <path class="wide" d="M 100 100 L 200 105 L 300 115 L 400 100"/>
+        <path class="wide" d="M 100 200 L 200 205 L 300 215 L 400 200"/>
+        <path class="narrow" d="M 100 300 L 200 305 L 300 315 L 400 300"/>
+        <path class="narrow" d="M 100 400 L 200 405 L 300 415 L 400 400"/>
+      </g>
+    </svg>
+    <script src="modifySelection.js"></script>
+  </body>
+</html>

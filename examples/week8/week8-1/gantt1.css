@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+#tooltip text {
+  font-family: "Montserrat";
+  font-size: 10px;
+}
+
+#rects rect {
+  fill: blueviolet;
+  fill-opacity: 0.4;
+  height: 8;
+  "mix-blend-mode": "multiply";
+}

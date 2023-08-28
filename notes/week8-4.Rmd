@@ -1,0 +1,158 @@
+---
+title: Geospatial Interaction
+layout: post
+output:
+  md_document:
+    preserve_yaml: true
+  always_allow_html: true
+---
+
+_Idioms for interacting with geographic data_
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week8-4.Rmd), [Recording](https://mediaspace.wisc.edu/media/Week%208%20-%204%3A%20Geospatial%20Interaction/1_e0i2pm2s)
+
+```{r, echo = FALSE}
+library(knitr)
+opts_knit$set(base_dir = "/", base.url = "/")
+opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "stat679_notes/assets/week8-4/"
+  )
+```
+
+```{r}
+library(tidyverse)
+library(leaflet)
+```
+
+1. Maps can be information dense, so it’s often useful to make them interactive.
+These notes review some basic strategies for interactive spatial data
+visualization.
+
+1. `leaflet` is an easy-to-use R package that's often sufficient for routine visualization. It offers several types of marks (marks, circles, polygons) and allows them to
+encode fields in a dataset. Note that its interface is more like base R than
+ggplot2 — we specify each attribute in one plot command. For example, in the
+code block below, `addTiles` fetches the background map. addCircles overlays the
+new vector features on top of the map. It’s worth noting that the vector
+features were created automatically – there was no need to create or read in any
+type of sf object.
+
+    ```{r, eval = FALSE}
+    cities <- read_csv("https://uwmadison.box.com/shared/static/j98anvdoasfb1h651qxzrow2ua45oap1.csv")
+    leaflet(cities) %>%
+      addTiles() %>%
+      addCircles(
+        lng = ~Long,
+        lat = ~Lat,
+        radius = ~sqrt(Pop) * 30
+      )
+    ```
+
+    <iframe src="https://krisrs1128.github.io/stat479/posts/2021-03-02-week7-5/#htmlwidget-d84747f10a4e7901e20d" data-external="1" width=400 height=500></iframe>
+
+1. Leaflet maps can be [embedded into Shiny
+apps](https://rstudio.github.io/leaflet/shiny.html) using `leafletOutput` and
+`renderLeaflet`. For example, the Superzip Explorer is a visualization
+designed for  showing income and education levels across ZIP codes in the US. In
+the
+[server](https://github.com/rstudio/shiny-examples/blob/main/063-superzip-example/server.R),
+the map is initialized using the leaflet command (without even adding any data
+layers).
+
+    ```{r, eval = FALSE}
+    # Create the map
+    output$map <- renderLeaflet({
+      leaflet() %>%
+        addTiles() %>%
+        setView(lng = -93.85, lat = 37.45, zoom = 4)
+    })
+    ```
+
+    <iframe src="https://shiny.rstudio.com/gallery/superzip-example.html" data-external="1" width=900 height=600></iframe>
+
+1. The most interesting aspect of the explorer is that it lets us zoom into
+regions and study properties of ZIP codes within the current view.
+leaflet automatically creates an `input$map_bounds` input which is triggered
+anytime we pan or zoom the map. It returns a subset of the full dataset within
+the current view.
+
+    ```{r, eval = FALSE}
+    zipsInBounds <- reactive({
+      if (is.null(input$map_bounds)) return(zipdata[FALSE,]) # return empty data
+      bounds <- input$map_bounds
+      latRng <- range(bounds$north, bounds$south)
+      lngRng <- range(bounds$east, bounds$west)
+
+      # filters to current view
+      subset(zipdata,
+        latitude >= latRng[1] & latitude <= latRng[2] &
+          longitude >= lngRng[1] & longitude <= lngRng[2])
+    })
+    ```
+
+    Whenever this reactive is run, the histogram (`output$histCentile`) and
+    scatterplot (`output$scatterCollegeIncome`) on the side of the app are
+    updated.
+
+1. Notice that an observer was created to monitor any interactions with the map.
+Within this observe block, a `leafletProxy` call is used. This function makes it
+possible to modify a leaflet map without redrawing the entire map. It helps
+support efficient rendering -- we're able to change the colors of the circles
+without redrawing the entire leaflet view.
+
+    ```{r, eval = FALSE}
+    leafletProxy("map", data = zipdata) %>%
+      clearShapes() %>%
+      addCircles(~longitude, ~latitude, radius=radius, layerId=~zipcode,
+        stroke=FALSE, fillOpacity=0.4, fillColor=pal(colorData)) %>%
+      addLegend("bottomleft", pal=pal, values=colorData, title=colorBy,
+        layerId="colorLegend")
+    ```
+
+1. We can often dynamically query spatial data. Querying a map can highlight
+properties of samples within a geographic region. For example, here is a map of
+in which each US county has been associated with a (random) pair of data
+features. Clicking on counties (or hovering with the shift key pressed) updates
+the bars on the right. Each bar shows the average from one of the data fields,
+across all selected counties.
+
+    <iframe width="100%" height="556" frameborder="0" src="https://observablehq.com/embed/@krisrs1128/geojson-mouseover?cells=output"></iframe>
+
+1. This linking is accomplished using event listeners. For example, the map
+includes the call `.on("mouseover", update_selection)`, and `update_selection`
+changes the fill of the currently hovered county,
+
+    ```{r, eval = FALSE}
+    svg.selectAll("path")
+      .attr("fill", (d) => selected.indexOf(d.id) == -1 ? "#f7f7f7" : "#4a4a4a");
+    ```
+
+    The full implementation can be read
+    [here](https://observablehq.com/@krisrs1128/geojson-mouseover). Note that
+    interactivity here is done just like in any other D3 visualization. We can
+    treat the map as just another collection of SVG paths, and all our
+    interaction events behave in the same way.
+
+1. We can also imagine selecting geographic regions by interacting with linked
+views. This is used in Nadieh Bremer's Urbanization in East Asia
+[visualization](http://nbremer.github.io/urbanization/), for example, where we
+can see all the urban areas within a country by hovering its associated bar.
+
+    <iframe width="600" height="400" src="https://www.youtube.com/embed/Z0K_H_zjcYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+1. Here is a somewhat more complex version of the earlier random data example
+where acounties are associated with (random) time series. Redrawing the lower
+and upper bounds on the time series changes which counties are highlighted.
+
+    <iframe width="800" height="584" frameborder="0" src="https://observablehq.com/embed/@krisrs1128/geo-time-selection?cells=chart"></iframe>
+
+1. Though it’s not exactly interaction, another common strategy for
+spatiotemporal data is animation. The major trends often become apparent by
+visualizing the flow of visual marks on the screen. For example, how can we
+visualize where football players go on a field before they score a goal? One
+approach is to animate the trajectories leading up to the goal. Here is one
+beautiful visualization (in D3!) by Karim Douieb that shows the most common
+paths and the speed at which the players run.
+
+    <iframe width="100%" height="718" frameborder="0" src="https://observablehq.com/embed/dfbbfbde8609dd9e?cells=output"></iframe>

@@ -1,0 +1,43 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+.plain {
+  r: 2;
+}
+
+.label_title {
+  text-anchor: middle;
+  vertical-align: top;
+  fill: #0c0c0c;
+  font-size: 20px;
+  font-family: "Nanum Gothic";
+}
+
+.selected {
+  opacity: 1;
+  height: 15;
+  width: 15;
+  r: 2;
+}
+
+.deselected {
+  opacity: 0.4;
+  height: 5;
+  width: 5;
+  r: 1;
+}
+
+#axes path {
+  stroke-width: 2px;
+  stroke: #4a4a4a;
+}
+
+#axes .tick {
+  font-size: 15px;
+}
+
+#legend text {
+  fill: #0c0c0c;
+  font-size: 12px;
+  font-family: "Nanum Gothic";
+}

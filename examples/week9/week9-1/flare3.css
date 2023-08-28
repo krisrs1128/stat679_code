@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+#tree path {
+  fill: none;
+  stroke: #0c0c0c;
+}
+
+#tree circle {
+  stroke: none;
+}
+
+#labels text {
+  font-family: Poppins;
+  font-size: 10px;
+}

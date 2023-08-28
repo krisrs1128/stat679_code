@@ -1,0 +1,301 @@
+Preparing to deploy application...During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+DONE
+Uploading bundle for application: 405...DONE
+Deploying bundle: 2179 for application: 405 ...
+[Connect] Building Shiny application...
+[Connect] Bundle created with R version 4.2.1 is compatible with environment Local with R version 4.2.1 from /opt/R/4.2.1/bin/R 
+[Connect] Bundle requested R version 4.2.1; using /opt/R/4.2.1/bin/R which has version 4.2.1
+[Connect] 2022/09/12 22:52:31.245228621 Using user agent string: 'RStudio R (4.2.1 x86_64-pc-linux-gnu x86_64 linux-gnu)' 
+[Connect] 2022/09/12 22:52:31.245317225 Running on host: ip-10-0-0-183
+[Connect] 2022/09/12 22:52:31.556649040 Linux distribution: Ubuntu 18.04.6 LTS (bionic) 
+[Connect] 2022/09/12 22:52:31.557478655 R version: 4.2.1
+[Connect] 2022/09/12 22:52:31.557567206 # Validating R library read / write permissions --------------------------------
+[Connect] 2022/09/12 22:52:31.557783097 Using R library for packrat bootstrap: /opt/rstudio-connect/mnt/R/4.2.1
+[Connect] 2022/09/12 22:52:31.557913181 # Validating managed packrat installation --------------------------------------
+[Connect] 2022/09/12 22:52:31.558183265 Vendored packrat archive: /opt/rstudio-connect/ext/R/packrat_0.5.0-31_6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d.tar.gz
+[Connect] 2022/09/12 22:52:31.567732668 Vendored packrat SHA: 6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d
+[Connect] 2022/09/12 22:52:31.568910420 Managed packrat SHA:  6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d
+[Connect] 2022/09/12 22:52:31.569579885 Managed packrat version: 0.5.0.31
+[Connect] 2022/09/12 22:52:31.569843874 Managed packrat is up-to-date.
+[Connect] 2022/09/12 22:52:31.570047856 # Validating packrat cache read / write permissions ----------------------------
+[Connect] 2022/09/12 22:52:31.574513777 Using packrat cache directory: /opt/rstudio-connect/mnt/packrat/4.2.1
+[Connect] 2022/09/12 22:52:31.705747617 Audited package hashes with local packrat installation.
+[Connect] 2022/09/12 22:52:31.729692405 Package repository URLs are being overridden with the following values:
+[Connect] 2022/09/12 22:52:31.729700921 Repository: CRAN = https://cran.rstudio.com/
+[Connect] 2022/09/12 22:52:31.729730872 Repository: RSPM = http://rstudio-manager.it.wisc.edu/cran/__linux__/bionic/latest 
+[Connect] 2022/09/12 22:52:31.745150991 # Installing required R packages with `packrat::restore()` ---------------------
+[Connect] 2022/09/12 22:52:31.973394536 Installing DBI (1.1.3) ... 
+[Connect] 2022/09/12 22:52:31.982279761 Using cached DBI.
+[Connect] 2022/09/12 22:52:31.982405198 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:31.982489612 Installing MASS (7.3-58.1) ... 
+[Connect] 2022/09/12 22:52:31.987915910 Using cached MASS.
+[Connect] 2022/09/12 22:52:31.988030918 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:31.988114903 Installing R6 (2.5.1) ... 
+[Connect] 2022/09/12 22:52:31.994260574 Using cached R6.
+[Connect] 2022/09/12 22:52:31.994385306 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:31.994493439 Installing RColorBrewer (1.1-3) ... 
+[Connect] 2022/09/12 22:52:31.998633257 Using cached RColorBrewer.
+[Connect] 2022/09/12 22:52:31.998755248 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:31.998861622 Installing Rcpp (1.0.9) ... 
+[Connect] 2022/09/12 22:52:32.003814695 Using cached Rcpp.
+[Connect] 2022/09/12 22:52:32.003927391 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.004010297 Installing assertthat (0.2.1) ... 
+[Connect] 2022/09/12 22:52:32.008472864 Using cached assertthat.
+[Connect] 2022/09/12 22:52:32.008588409 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.008671132 Installing backports (1.4.1) ... 
+[Connect] 2022/09/12 22:52:32.013635664 Using cached backports.
+[Connect] 2022/09/12 22:52:32.013748799 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.013843254 Installing base64enc (0.1-3) ... 
+[Connect] 2022/09/12 22:52:32.017971905 Using cached base64enc.
+[Connect] 2022/09/12 22:52:32.018088558 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.018197672 Installing bit (4.0.4) ... 
+[Connect] 2022/09/12 22:52:32.023271523 Using cached bit.
+[Connect] 2022/09/12 22:52:32.023389598 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.023487509 Installing clipr (0.8.0) ... 
+[Connect] 2022/09/12 22:52:32.028923119 Using cached clipr.
+[Connect] 2022/09/12 22:52:32.029037073 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.029142289 Installing colorspace (2.0-3) ... 
+[Connect] 2022/09/12 22:52:32.036672845 Using cached colorspace.
+[Connect] 2022/09/12 22:52:32.036785802 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.036867484 Installing commonmark (1.8.0) ... 
+[Connect] 2022/09/12 22:52:32.041886525 Using cached commonmark.
+[Connect] 2022/09/12 22:52:32.042002921 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.042081025 Installing cpp11 (0.4.2) ... 
+[Connect] 2022/09/12 22:52:32.047484672 Using cached cpp11.
+[Connect] 2022/09/12 22:52:32.047604637 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.047702748 Installing crayon (1.5.1) ... 
+[Connect] 2022/09/12 22:52:32.052746367 Using cached crayon.
+[Connect] 2022/09/12 22:52:32.052862053 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.052942208 Installing curl (4.3.2) ... 
+[Connect] 2022/09/12 22:52:32.058511416 Using cached curl.
+[Connect] 2022/09/12 22:52:32.058627443 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.058707931 Installing data.table (1.14.2) ... 
+[Connect] 2022/09/12 22:52:32.065365758 Using cached data.table.
+[Connect] 2022/09/12 22:52:32.065479020 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.065562331 Installing digest (0.6.29) ... 
+[Connect] 2022/09/12 22:52:32.071770978 Using cached digest.
+[Connect] 2022/09/12 22:52:32.071885871 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.071981667 Installing evaluate (0.16) ... 
+[Connect] 2022/09/12 22:52:32.077267080 Using cached evaluate.
+[Connect] 2022/09/12 22:52:32.077379870 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.077478926 Installing fansi (1.0.3) ... 
+[Connect] 2022/09/12 22:52:32.082725743 Using cached fansi.
+[Connect] 2022/09/12 22:52:32.082843070 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.082938781 Installing farver (2.1.1) ... 
+[Connect] 2022/09/12 22:52:32.088187661 Using cached farver.
+[Connect] 2022/09/12 22:52:32.088308860 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.088404976 Installing fastmap (1.1.0) ... 
+[Connect] 2022/09/12 22:52:32.093278308 Using cached fastmap.
+[Connect] 2022/09/12 22:52:32.093397707 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.093492850 Installing fs (1.5.2) ... 
+[Connect] 2022/09/12 22:52:32.099214254 Using cached fs.
+[Connect] 2022/09/12 22:52:32.099335887 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.099441696 Installing generics (0.1.3) ... 
+[Connect] 2022/09/12 22:52:32.104541922 Using cached generics.
+[Connect] 2022/09/12 22:52:32.104655663 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.104747132 Installing glue (1.6.2) ... 
+[Connect] 2022/09/12 22:52:32.111592062 Using cached glue.
+[Connect] 2022/09/12 22:52:32.111707360 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.111815492 Installing gtable (0.3.1) ... 
+[Connect] 2022/09/12 22:52:32.117085509 Using cached gtable.
+[Connect] 2022/09/12 22:52:32.117197029 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.117297610 Installing isoband (0.2.5) ... 
+[Connect] 2022/09/12 22:52:32.122530651 Using cached isoband.
+[Connect] 2022/09/12 22:52:32.122640772 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.122735333 Installing jsonlite (1.8.0) ... 
+[Connect] 2022/09/12 22:52:32.127866941 Using cached jsonlite.
+[Connect] 2022/09/12 22:52:32.127982935 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.128090830 Installing labeling (0.4.2) ... 
+[Connect] 2022/09/12 22:52:32.132294051 Using cached labeling.
+[Connect] 2022/09/12 22:52:32.132410575 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.132515075 Installing lattice (0.20-45) ... 
+[Connect] 2022/09/12 22:52:32.139760518 Using cached lattice.
+[Connect] 2022/09/12 22:52:32.139868260 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.139959987 Installing lazyeval (0.2.2) ... 
+[Connect] 2022/09/12 22:52:32.147329820 Using cached lazyeval.
+[Connect] 2022/09/12 22:52:32.147442086 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.147531625 Installing magrittr (2.0.3) ... 
+[Connect] 2022/09/12 22:52:32.154704606 Using cached magrittr.
+[Connect] 2022/09/12 22:52:32.154834452 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.154923429 Installing mime (0.12) ... 
+[Connect] 2022/09/12 22:52:32.159757813 Using cached mime.
+[Connect] 2022/09/12 22:52:32.159872980 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.159966390 Installing pkgconfig (2.0.3) ... 
+[Connect] 2022/09/12 22:52:32.164503439 Using cached pkgconfig.
+[Connect] 2022/09/12 22:52:32.164616652 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.164707093 Installing prettyunits (1.1.1) ... 
+[Connect] 2022/09/12 22:52:32.169264383 Using cached prettyunits.
+[Connect] 2022/09/12 22:52:32.169375209 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.169466915 Installing ps (1.7.1) ... 
+[Connect] 2022/09/12 22:52:32.174866567 Using cached ps.
+[Connect] 2022/09/12 22:52:32.174978001 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.175070898 Installing rappdirs (0.3.3) ... 
+[Connect] 2022/09/12 22:52:32.180622622 Using cached rappdirs.
+[Connect] 2022/09/12 22:52:32.180734277 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.180824497 Installing rematch (1.0.1) ... 
+[Connect] 2022/09/12 22:52:32.185313101 Using cached rematch.
+[Connect] 2022/09/12 22:52:32.185422022 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.185513024 Installing rlang (1.0.5) ... 
+[Connect] 2022/09/12 22:52:32.193185241 Using cached rlang.
+[Connect] 2022/09/12 22:52:32.193301384 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.193395650 Installing rstudioapi (0.14) ... 
+[Connect] 2022/09/12 22:52:32.198315975 Using cached rstudioapi.
+[Connect] 2022/09/12 22:52:32.198430939 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.198523066 Installing sourcetools (0.1.7) ... 
+[Connect] 2022/09/12 22:52:32.203185546 Using cached sourcetools.
+[Connect] 2022/09/12 22:52:32.203293470 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.203389772 Installing stringi (1.7.8) ... 
+[Connect] 2022/09/12 22:52:32.208748241 Using cached stringi.
+[Connect] 2022/09/12 22:52:32.208858547 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.208949396 Installing sys (3.4) ... 
+[Connect] 2022/09/12 22:52:32.214024116 Using cached sys.
+[Connect] 2022/09/12 22:52:32.214147423 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.214265737 Installing utf8 (1.2.2) ... 
+[Connect] 2022/09/12 22:52:32.219196782 Using cached utf8.
+[Connect] 2022/09/12 22:52:32.219306721 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.219410531 Installing uuid (1.1-0) ... 
+[Connect] 2022/09/12 22:52:32.223519394 Using cached uuid.
+[Connect] 2022/09/12 22:52:32.223631661 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.223738839 Installing viridisLite (0.4.1) ... 
+[Connect] 2022/09/12 22:52:32.230156136 Using cached viridisLite.
+[Connect] 2022/09/12 22:52:32.230302123 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.230409493 Installing withr (2.5.0) ... 
+[Connect] 2022/09/12 22:52:32.236508964 Using cached withr.
+[Connect] 2022/09/12 22:52:32.236628889 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.236732620 Installing xfun (0.32) ... 
+[Connect] 2022/09/12 22:52:32.241943607 Using cached xfun.
+[Connect] 2022/09/12 22:52:32.242054689 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.242145519 Installing xml2 (1.3.3) ... 
+[Connect] 2022/09/12 22:52:32.247692875 Using cached xml2.
+[Connect] 2022/09/12 22:52:32.247814692 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.247918767 Installing xtable (1.8-4) ... 
+[Connect] 2022/09/12 22:52:32.253210031 Using cached xtable.
+[Connect] 2022/09/12 22:52:32.253323591 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.253418221 Installing yaml (2.3.5) ... 
+[Connect] 2022/09/12 22:52:32.257846530 Using cached yaml.
+[Connect] 2022/09/12 22:52:32.257971690 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.258075199 Installing bit64 (4.0.5) ... 
+[Connect] 2022/09/12 22:52:32.263382759 Using cached bit64.
+[Connect] 2022/09/12 22:52:32.263500492 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.263604391 Installing munsell (0.5.0) ... 
+[Connect] 2022/09/12 22:52:32.269305964 Using cached munsell.
+[Connect] 2022/09/12 22:52:32.269426194 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.269532753 Installing systemfonts (1.0.4) ... 
+[Connect] 2022/09/12 22:52:32.277079381 Using cached systemfonts.
+[Connect] 2022/09/12 22:52:32.277192968 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.277285621 Installing tzdb (0.3.0) ... 
+[Connect] 2022/09/12 22:52:32.284658455 Using cached tzdb.
+[Connect] 2022/09/12 22:52:32.284771944 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.284878509 Installing lubridate (1.8.0) ... 
+[Connect] 2022/09/12 22:52:32.293406224 Using cached lubridate.
+[Connect] 2022/09/12 22:52:32.293518376 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.293601783 Installing cli (3.3.0) ... 
+[Connect] 2022/09/12 22:52:32.298982277 Using cached cli.
+[Connect] 2022/09/12 22:52:32.299095133 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.299189350 Installing Matrix (1.4-1) ... 
+[Connect] 2022/09/12 22:52:32.306153905 Using cached Matrix.
+[Connect] 2022/09/12 22:52:32.306270574 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.306373269 Installing nlme (3.1-159) ... 
+[Connect] 2022/09/12 22:52:32.313521786 Using cached nlme.
+[Connect] 2022/09/12 22:52:32.313632294 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.313735727 Installing processx (3.7.0) ... 
+[Connect] 2022/09/12 22:52:32.319179171 Using cached processx.
+[Connect] 2022/09/12 22:52:32.319292202 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.319399848 Installing cachem (1.0.6) ... 
+[Connect] 2022/09/12 22:52:32.324030721 Using cached cachem.
+[Connect] 2022/09/12 22:52:32.324141361 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.324244811 Installing ellipsis (0.3.2) ... 
+[Connect] 2022/09/12 22:52:32.329056103 Using cached ellipsis.
+[Connect] 2022/09/12 22:52:32.329169386 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.329263677 Installing htmltools (0.5.3) ... 
+[Connect] 2022/09/12 22:52:32.334914181 Using cached htmltools.
+[Connect] 2022/09/12 22:52:32.335038071 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.335133269 Installing later (1.3.0) ... 
+[Connect] 2022/09/12 22:52:32.342194039 Using cached later.
+[Connect] 2022/09/12 22:52:32.342313537 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.342418535 Installing lifecycle (1.0.1) ... 
+[Connect] 2022/09/12 22:52:32.348892517 Using cached lifecycle.
+[Connect] 2022/09/12 22:52:32.349017804 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.349122622 Installing purrr (0.3.4) ... 
+[Connect] 2022/09/12 22:52:32.354308041 Using cached purrr.
+[Connect] 2022/09/12 22:52:32.354418997 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.354512124 Installing stringr (1.4.1) ... 
+[Connect] 2022/09/12 22:52:32.359645688 Using cached stringr.
+[Connect] 2022/09/12 22:52:32.359763619 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.359857730 Installing askpass (1.1) ... 
+[Connect] 2022/09/12 22:52:32.365129468 Using cached askpass.
+[Connect] 2022/09/12 22:52:32.365249476 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.365353159 Installing highr (0.9) ... 
+[Connect] 2022/09/12 22:52:32.370448707 Using cached highr.
+[Connect] 2022/09/12 22:52:32.370579193 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.370656528 Installing tinytex (0.41) ... 
+[Connect] 2022/09/12 22:52:32.375765048 Using cached tinytex.
+[Connect] 2022/09/12 22:52:32.375871000 	OK (symlinked cache)
+[Connect] 2022/09/12 22:52:32.375960677 Installing textshaping (0.3.6) ... 
+[Connect] 2022/09/12 22:52:32.582425885 curl: HTTP 200 https://cran.rstudio.com/src/contrib/PACKAGES.rds
+[Connect] 2022/09/12 22:52:33.565022728 curl: HTTP 200 https://cran.rstudio.com/src/contrib/textshaping_0.3.6.tar.gz
+[Connect] 2022/09/12 22:52:33.892118482 [1] "Command failed (1)\n\nFailed to run system command:\n\n\t'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/RtmpqdQtp4/packrat-install-30ee4b54c92/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo \n\nThe command failed with output:\n* installing *source* package ‘textshaping’ ...\n** package ‘textshaping’ successfully unpacked and MD5 sums checked\n** using staged installation\nPackage fribidi was not found in the pkg-config search path.\nPerhaps you should add the directory containing `fribidi.pc'\nto the PKG_CONFIG_PATH environment variable\nNo package 'fribidi' found\nUsing PKG_CFLAGS=\nUsing PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng\n--------------------------- [ANTICONF] --------------------------------\nConfiguration failed to find the harfbuzz freetype2 fribidi library. Try installing:\n * deb: libharfbuzz-dev libfribidi-dev
+[Connect]  (Debian, Ubuntu, etc)\n * rpm: harfbuzz-devel fribidi-devel (Fedora, EPEL)\n * csw: libharfbuzz_dev libfribidi_dev (Solaris)\n * brew: harfbuzz fribidi (OSX)\nIf harfbuzz freetype2 fribidi is already installed, check that 'pkg-config' is in your\nPATH and PKG_CONFIG_PATH contains a harfbuzz freetype2 fribidi.pc file. If pkg-config\nis unavailable you can set INCLUDE_DIR and LIB_DIR manually via:\nR CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'\n-------------------------- [ERROR MESSAGE] ---------------------------\n<stdin>:1:10: fatal error: hb-ft.h: No such file or directory\ncompilation terminated.\n--------------------------------------------------------------------\nERROR: configuration failed for package ‘textshaping’\n* removing ‘/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1/textshaping’"
+[Connect] 2022/09/12 22:52:33.893244787 Error: Command failed (1)
+[Connect] 2022/09/12 22:52:33.893250429 
+[Connect] 2022/09/12 22:52:33.893267924 Failed to run system command:
+[Connect] 2022/09/12 22:52:33.893268745 
+[Connect] 2022/09/12 22:52:33.893276157 	'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/RtmpqdQtp4/packrat-install-30ee4b54c92/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo 
+[Connect] 2022/09/12 22:52:33.893289341 
+[Connect] 2022/09/12 22:52:33.893304037 The command failed with output:
+[Connect] 2022/09/12 22:52:33.893304727 * installing *source* package ‘textshaping’ ...
+[Connect] 2022/09/12 22:52:33.893312209 ** package ‘textshaping’ successfully unpacked and MD5 sums checked
+[Connect] 2022/09/12 22:52:33.893312998 ** using staged installation
+[Connect] 2022/09/12 22:52:33.893320460 Package fribidi was not found in the pkg-config search path.
+[Connect] 2022/09/12 22:52:33.893321224 Perhaps you should add the directory containing `fribidi.pc'
+[Connect] 2022/09/12 22:52:33.893327968 to the PKG_CONFIG_PATH environment variable
+[Connect] 2022/09/12 22:52:33.893328637 No package 'fribidi' found
+[Connect] 2022/09/12 22:52:33.893334565 Using PKG_CFLAGS=
+[Connect] 2022/09/12 22:52:33.893335236 Using PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng
+[Connect] 2022/09/12 22:52:33.893341820 --------------------------- [ANTICONF] --------------------------------
+[Connect] 2022/09/12 22:52:33.893342642 Configuration failed to find the harfbuzz freetype2 fribidi library. Try installing:
+[Connect] 2022/09/12 22:52:33.893352544  * deb: libharfbuzz-dev libfribidi-dev (Debian, Ubuntu, etc)
+[Connect] 2022/09/12 22:52:33.893353078  * rpm: harfbuzz-devel fribidi-devel (Fedora, EPEL)
+[Connect] 2022/09/12 22:52:33.893359708  * csw: libharfbuzz_dev libfribidi_dev (Solaris)
+[Connect] 2022/09/12 22:52:33.893360443  * brew: harfbuzz fribidi (OSX)
+[Connect] 2022/09/12 22:52:33.893367631 If harfbuzz freetype2 fribidi is already installed, check that 'pkg-config' is in your
+[Connect] 2022/09/12 22:52:33.893368111 PATH and PKG_CONFIG_PATH contains a harfbuzz freetype2 fribidi.pc file. If pkg-config
+[Connect] 2022/09/12 22:52:33.893374458 is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+[Connect] 2022/09/12 22:52:33.893374908 R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'
+[Connect] 2022/09/12 22:52:33.893381023 -------------------------- [ERROR MESSAGE] ---------------------------
+[Connect] 2022/09/12 22:52:33.893381610 <stdin>:1:10: fatal error: hb-ft.h: No such file or directory
+[Connect] 2022/09/12 22:52:33.893388301 compilation terminated.
+[Connect] 2022/09/12 22:52:33.893388752 --------------------------------------------------------------------
+[Connect] 2022/09/12 22:52:33.893394402 ERROR: configuration failed for package ‘textshaping’
+[Connect] 2022/09/12 22:52:33.893394947 * removing ‘/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1/textshaping’
+[Connect] 2022/09/12 22:52:33.893402121 
+[Connect] 2022/09/12 22:52:33.893402559 Unable to fully restore the R packages associated with this deployment.
+[Connect] 2022/09/12 22:52:33.893408441 Please review the preceding messages to determine which package
+[Connect] 2022/09/12 22:52:33.893408849 encountered installation difficulty and the cause of the failure.
+[Connect] 2022/09/12 22:52:33.894610118 Error code: r-missing-system-library
+[Connect] An R package cannot be installed because a required system-level dependency is missing.
+[Connect] Possible causes:
+[Connect] * An R package requires a system-level dependency, such as a library or executable, which is not installed on the Connect server.
+[Connect] 
+[Connect] Possible solutions:
+[Connect] * Install the required package using your system package manager (such as apt or yum).
+[Connect] * If you have RStudio Package Manager, open the information page for the affected R package. Installation instructions for the package's system-level dependencies are included under the Install System Prerequisites heading
+[Connect] * Otherwise, use the messages in the deployment log to identify which system package you need to install.
+[Connect] 
+[Connect] References:
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#redhat-package-dependencies
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#suse-package-dependencies
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#ubuntu-package-dependencies
+[Connect] 
+[Connect] 2022/09/12 22:52:33.894610118 Additional data:
+[Connect] PackageVersion: '0.3.6'
+[Connect] SystemPackage: 'fribidi'
+[Connect] Package: 'textshaping'
+[Connect] Found in the following log entry:
+[Connect] 2022/09/12 22:52:33.892118482 [1] "Command failed (1)\n\nFailed to run system command:\n\n\t'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/RtmpqdQtp4/packrat-install-30ee4b54c92/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo \n\nThe command failed with output:\n* installing *source* package ‘textshaping’ ...\n** package ‘textshaping’ successfully unpacked and MD5 sums checked\n** using staged installation\nPackage fribidi was not found in the pkg-config search path.\nPerhaps you should add the directory containing `fribidi.pc'\nto the PKG_CONFIG_PATH environment variable\nNo package 'fribidi' found\nUsing PKG_CFLAGS=\nUsing PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng\n--------------------------- [ANTICONF] --------------------------------\nConfiguration failed to find the harfbuzz freetype2 fribidi library. Try installing:\n * deb: libharfbuzz-dev libfribidi-dev
+[Connect] Build error: An R package cannot be installed because a required system-level dependency is missing. (r-missing-system-library)
+Application deployment failed with error: An R package cannot be installed because a required system-level dependency is missing. (r-missing-system-library)

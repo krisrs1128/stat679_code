@@ -1,0 +1,20 @@
+---
+title: Word Embeddings
+layout: post
+output: 
+  md_document:
+    preserve_yaml: true
+---
+
+_Word-level representations through text embeddings_
+
+```{r, echo = FALSE}
+library(knitr)
+opts_knit$set(base_dir = "/", base.url = "/")
+opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.path = "stat679_notes/assets/week12-4/"
+  )
+```
+

@@ -1,0 +1,32 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(sf)
+library(leaflet)
+```
+
+
+```{r}
+geo <- read_sf("https://raw.githubusercontent.com/krisrs1128/stat679_code/main/examples/week8/week8-3/cb_2018_us_county_20m.geojson") %>%
+geo <- read_sf("~/Downloads/cb_2018_us_county_20m.json") %>%
+  filter(STATEFP == 55) %>%
+  st_transform(st_crs("epsg:4326")) %>%
+  left_join(expense, by = c("NAME" = "County"))
+
+bins <- c(quantile(geo$Employee_Benefits), Inf)
+pal <- colorBin("BuPu", domain = geo$Employee_Benefits, bins = bins)
+
+leaflet() %>% 
+  addProviderTiles("Stamen.Toner") %>% 
+  addPolygons(
+    data = geo, 
+    fillColor = ~pal(Employee_Benefits),
+    fillOpacity = .8,
+    stroke = FALSE
+  ) %>%
+  addLegend(pal = pal, values = geo$Employee_Benefits, opacity = 1)
+```

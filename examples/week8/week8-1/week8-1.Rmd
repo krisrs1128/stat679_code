@@ -1,0 +1,41 @@
+---
+title: "week8-1"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tsibbledata)
+library(tidyverse)
+library(jsonlite)
+pelt %>%
+  select(-Hare) %>% 
+  write_csv("lynx.csv")
+```
+
+```{r}
+library(sugrrants)
+library(lubridate)
+library(jsonlite)
+ve_source <- vic_elec %>%
+  filter(year(Date) == "2013", month(Date) < 4) %>%
+  select(Date, Time, Temperature, Demand)
+
+ve <- ve_source %>%
+  split(.$Date) %>%
+  map(~ as.data.frame(select(., -Date)))
+
+names(ve) <- NULL
+ve %>%
+  write_json("electricity.json", simplifyVector = TRUE)
+
+ve_source %>%
+  group_by(Date) %>%
+  summarise(avg_temp = mean(Temperature)) %>%
+  write_csv("temperatures.csv")
+```
+

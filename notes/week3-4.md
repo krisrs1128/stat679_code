@@ -1,0 +1,118 @@
+---
+title: Shiny Themes 
+layout: post
+output: 
+  md_document:
+    preserve_yaml: true
+---
+
+*Custom styling in Shiny.*
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week3-4.Rmd),
+[Recording](https://mediaspace.wisc.edu/media/Week+3+-+4A+Shiny+Themes/1_9ra67tir)
+
+1.  Even if each of its component visualizations were beautifully
+    designed, if we stick to using the default Shiny styling, it is hard
+    to make our work look professional. In this set of notes, we’ll
+    discuss how to customize the overall appearance of a Shiny app using
+    the `bslib` library. We’ll work with the Old Faithful dataset. I’ve
+    added some filler text to the bottom of the app so that we can see
+    what effect alternative stylings will have on it.
+
+        library(shiny)
+
+        ui <- fluidPage(
+          titlePanel("Old Faithful Geyser Data"),
+          sidebarLayout(
+            sidebarPanel(
+              sliderInput("bins", "Number of bins:", min = 1, max = 50, value = 30) 
+              ),
+            mainPanel(
+              plotOutput("distPlot")
+              )
+          )
+        )
+
+        server <- function(input, output) {
+            output$distPlot <- renderPlot({
+                x <- faithful[, 2]
+                bins <- seq(min(x), max(x), length.out = input$bins + 1)
+                hist(x, breaks = bins, col = 'darkgray', border = 'white',
+                     xlab = 'Waiting time to next eruption (in mins)',
+                     main = 'Histogram of waiting times')
+            })
+        }
+
+        shinyApp(ui, server)
+
+    <iframe src="https://data-viz.it.wisc.edu/content/b6f80d50-7772-452c-aa09-9320ff3ac811/" allowfullscreen="" data-external="1" height=700 width=600></iframe>
+
+2.  `bslib` provides an R interface to bootstrap, which is a web library
+    with pre-defined website themes. Each theme has been designed in
+    such a way that its color palettes, font choices, and UI elements
+    (e.g., the shape of buttons) work well together.
+
+3.  The main function in this library is `bs_theme`. The simplest way to
+    customize a page’s theme is to set the `bootswatch` argument of
+    `bs_theme`, which globally changes the theme to reflect one of a set
+    of predefined `bootswatch` themes — you can see choices
+    [here](https://bootswatch.com/).
+
+        library(bslib)
+
+        ui <- fluidPage(
+          theme = bs_theme(bootswatch = "simplex"),
+          titlePanel("Old Faithful Geyser Data"),
+          ...
+
+    <iframe src="https://data-viz.it.wisc.edu/content/0d42915b-1fe1-43f3-81c6-4b47cbb7e23c/" allowfullscreen="" data-external="1" height=700 width=600></iframe>
+
+4.  Sometimes we want finer-grained control than simply applying a
+    `bootswatch` theme. Fortunately, `bs_theme` also provides arguments
+    that allow us to customize a variety of options.
+
+5.  For example, if we want to change the background and foreground
+    colors of our application, we can use the `bg` and `fg` arguments.
+    Note that I also passed in a `bg = NA` argument to `renderPlot`, so
+    that the plot was printed transparently, and not with a white
+    background.
+
+        ui <- fluidPage(
+          theme = bs_theme(
+            bootswatch = "simplex",
+            fg =  "#5DA668",
+            bg = "#F2E9E9"
+          ),
+        ...
+
+        output$distPlot <- renderPlot({
+          ...
+        }, bg = NA)
+
+    <iframe src="https://data-viz.it.wisc.edu/content/8144e782-028e-4c0a-b0a0-3304caced9b9/" allowfullscreen="" data-external="1" height=700 width=600></iframe>
+
+6.  Similarly, if we want to change the fonts used for headers, main
+    text, and code, we can set the corresponding themer arguments. It’s
+    possible to define fonts directly from font objects, but it’s
+    usually easiest to use an existing link with [Google
+    fonts](https://fonts.google.com/).
+
+        ui <- fluidPage(
+          theme = bs_theme(
+            bootswatch = "simplex",
+            base_font = font_google("Combo"),
+            heading_font = font_google("Rubik Moonrocks")
+          ),
+
+    <iframe src="https://data-viz.it.wisc.edu/content/e37843db-0cf7-43aa-b204-e26e1fddfa08/" allowfullscreen="" data-external="1" height=700 width=600></iframe>
+
+7.  A nice trick is that we can customize the appearance of our site
+    interactively by using the `bs_theme_preview()` function. It will
+    open up our app with menus for modifying app appearance in
+    real-time. Once we choose a styling that we like, we can retrieve
+    the corresponding `bs_theme()` arguments from the R console.
+
+8.  Just to illustrate the power of bslib, here is an egregious
+    application of bslib to create an NES-themed Shiny interface.
+
+    <iframe src="https://data-viz.it.wisc.edu/content/8942c629-fad1-433d-a124-cb56f09b21db/" allowfullscreen="" data-external="1" height=700 width=600></iframe>

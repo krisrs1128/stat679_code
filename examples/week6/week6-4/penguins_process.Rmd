@@ -1,0 +1,13 @@
+---
+title: "penguins"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r}
+library(tidyverse)
+read_csv("https://uwmadison.box.com/shared/static/ijh7iipc9ect1jf0z8qa2n3j7dgem1gh.csv") %>%
+  drop_na() %>%
+  write_csv("penguins.csv")
+```
+

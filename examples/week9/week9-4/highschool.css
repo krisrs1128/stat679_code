@@ -1,0 +1,12 @@
+
+#links line {
+  fill: none;
+  stroke: #bcbcbc;
+  stroke-width: 1.5;
+}
+
+#nodes circle {
+  stroke: none;
+  fill: "#0c0c0c";
+  r: 5;
+}

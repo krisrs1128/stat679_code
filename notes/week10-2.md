@@ -1,0 +1,169 @@
+---
+title: Graph Interactivity I
+layout: post
+output:
+  md_document:
+    preserve_yaml: true
+---
+
+*View interaction in graphs*
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week10-2.Rmd),
+[Recording](https://mediaspace.wisc.edu/media/Week%2010%20-%202%3A%20Graph%20Interactivity%20I/1_ifn5dvu8)
+
+1.  Interactivity makes it possible to tinker with different views of a
+    graph and get immediate feedback. By exploring a sequence of views,
+    it can be possible to build a holistic understanding of even very
+    complex graphs.
+
+2.  It’s helpful to think of graph interaction as falling into three
+    categories, though the boundaries can often be fuzzy. From most
+    superficial to most substantive, these are,
+
+    -   View interactivity: For a fixed mapping from data to visual
+        marks, we alter the user’s view so that different regions become
+        easier to study.
+    -   Encoding interactivity: We can change the visual encodings of a
+        fixed collection of data based on user queries.
+    -   Data interactivity: We can allow the user to manipulate the data
+        that appear in any given graph. In these notes, we’ll consider a
+        few examples of view interactivity. Later, we’ll discuss
+        encoding and data interactivity.
+
+3.  A simple form of view interactivity is panning and zooming.
+    Together, they can be used to change the center and extent of the
+    user’s field of view. Even though these operations don’t require any
+    complex redrawing of the graph, they allow a simple form of
+    overview + detail interactivity. We can zoom out to view the overall
+    graph and then pan and zoom to specific neighborhoods of interest.
+
+4.  In D3, panning and zooming can be implemented using `d3.zoom()`.
+    This are used to construct functions that can then be called on `g`
+    elements containing the objects to pan and zoom over (conceptually,
+    this is similar to `d3.brush()`). The `scaleExtent()` method
+    specifies the maximum and minimum zoom levels. For example, to pan
+    and zoom over a simple set of circles, we can use this block,
+
+        let zoom = d3.zoom()
+          .scaleExtent([1, 10])
+          .on("zoom", zoom_fun)
+        d3.select("svg").call(zoom)
+
+        function zoom_fun(ev) {
+          d3.select("svg").attr("transform", ev.transform);
+        }
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-1/pan-zoom.html" data-external="1" height=450 width=600></iframe>
+
+5.  A related behavior comes from `d3.drag()`. This allows us to move
+    elements every time the user clicks on one and then moves the mouse.
+    In this case, the drag function selects the current circle and
+    changes its `cx` and `cy` coordinates to wherever the user drags it
+    (stored in the event variable `ev`).
+
+        let drag = d3.drag()
+          .on("drag", drag_fun)
+        d3.select("svg")
+          .selectAll("circle")
+          .call(drag)
+
+        function drag_fun(ev) {
+          d3.select(this)
+            .attrs({
+              cx: d => ev.x,
+              cy: d => ev.y,
+            })
+        }
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-1/drag.html" data-external="1" height=200 width=200></iframe>
+
+6.  Application to the graph context works similarly. Here is an example
+    where we can pan and zoom across a node-link diagram (can you think
+    of how to do this for an adjacency matrix view?). We’ve also used
+    `d3.drag()` to move the nodes. Note that when the node’s position
+    changes, it updates the forces in the simulation, and other nodes
+    get dragged along.
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-2/miserables-zoom.html" data-external="1" height=450 width=600></iframe>
+
+7.  There are more subtle forms of view interactivity. One interesting
+    example discussed in the reading for this week is “edge lensing.”
+    This type of interaction is designed to solve the problem of highly
+    overlapping edges in dense regions of the graph. For example,
+    suppose we want to identify the neighbors of a node that lies in the
+    core of the graph. Since it lies in a dense region, there is a good
+    chance that many links cross over it, even if they are not direct
+    neighbors.
+
+8.  The idea of the edge lens interaction is to create a “lens” that
+    hides edges that are not directly relevant to the queried region.
+    For example, this removes long-range interactions between nodes far
+    from the lens.
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-2/miserables-lens.html" data-external="1" height=450 width=600></iframe>
+
+9.  We can implement a simple version of this in D3. We can easily draw
+    a lens by asking a circle to follow our mouse using a mousemove
+    interaction. Specifically, we append a circle,
+
+        d3.select("#lens")
+          .append("circle")
+          .attrs({
+            r: lens_radius,
+            fill: "white",
+            ...
+          })
+
+    and whenever the mouse moves, we call a function that will update
+    the display.
+
+        d3.select("#overall")
+          .on("mousemove", e => move_lens(e, nodes, links))
+
+10. In this `move_lens` function, we both move the circle defining the
+    lens and find all the nodes that are contained within the lens. In
+    the updated view, we redraw edges for just that subset of nodes –
+    this subset of edges is stored in the `links_` object below.
+    Specifically, we’ve created a `#local_links` group element
+    containing lines associated with just those edges in the local
+    neighborhoods. By making sure that these edges lie above the lens,
+    we create the illusion that the other edges have been erased.
+
+        let links_ = local_links(event, nodes, links)
+        let sel = d3.select("#local_links")
+          .selectAll("line")
+          .data(links_, d => d.index)
+
+        sel.enter()
+          .append("line")
+          .attrs({
+            x1: d => d.source.x,
+            y1: d => d.source.y,
+            x2: d => d.target.x,
+            y2: d => d.target.y
+          })
+
+        sel.exit().remove()
+
+11. This is not the most efficient implementation, since we draw the
+    edges within the lens twice (both above and below the lens). In
+    principle, we could compute the edge / lens intersections and change
+    the line endpoints as we move. However, the resulting code would be
+    harder to understand, and except in the most compute-constrained
+    environments, we should prefer readable implementations (this is in
+    the spirit of “premature optimization is the root of all evil”).
+
+12. There are a few other forms of lens-based view interactions. A
+    variant of edge lenses brings all of a node’s neighbors into the
+    currently hovered view. Fisheye lens are used to distort the view so
+    that the lensed area gets expanded. The user’s past history of
+    inputs can be used to define an “interest” function over regions of
+    the graph, and areas considered more interesting can be expanded to
+    take up more space in the layout.
+
+    <iframe width="100%" height="350" frameborder="0" src="https://observablehq.com/embed/@maliky/force-directed-graph-a-to-z?cells=chart5"></iframe>
+
+13. None of these approaches directly change the graph data (Data
+    Interactivity) or their encodings (Encoding Interactivity). In the
+    next set of notes, we’ll consider these more substantive
+    interactions.

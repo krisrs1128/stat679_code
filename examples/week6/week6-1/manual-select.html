@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-color@3"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <link rel="stylesheet" href="gapminder.css">
+  </head>
+  <body>
+    <g id="inputs">
+      <select id="country_select" multiple/>
+        <option>Africa</option>
+        <option>Americas</option>
+        <option>Asia</option>
+        <option>Europe</option>
+        <option>Oceania</option>
+      </select>
+      <input id="year_slider" type="range" min="1965", max="2015", step="1", value="1965"/>
+    </g>
+    <svg height="500" width="700">
+      <g id="circles"/>
+      <g id="axes"/>
+    </svg>
+  </body>
+  <script src="manual-select.js"></script>
+</html>

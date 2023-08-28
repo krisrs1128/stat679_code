@@ -1,0 +1,76 @@
+---
+title: "centrality"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(BioNet)
+library(DLBCL)
+data(dataLym)
+data(interactome)
+
+pval = dataLym$t.pval
+names(pval)  =  dataLym$label
+subnet = subNetwork(dataLym$label[1:500], interactome)
+subnet
+```
+
+```{r}
+library(tidygraph)
+library(tidyverse)
+library(ggraph)
+G <- as_tbl_graph(subnet) %N>%
+  mutate(size = local_size(order = 2)) %>%
+  filter(size > 3)
+
+ggraph(G) +
+  geom_node_point() +
+  geom_edge_link()
+```
+
+
+```{r}
+G <- G %E>%
+  mutate(centrality = centrality_edge_betweenness())
+```
+
+```{r}
+ggraph(G) +
+  geom_node_point() +
+  geom_edge_link(aes(width = centrality)) +
+  scale_edge_width(range = c(.01, 1))
+```
+
+```{r}
+library(jsonlite)
+list(
+  nodes = G %N>%
+    as_tibble(),
+  links = G %E>%
+    as_tibble() %>%
+    mutate(from = from - 1, to = to - 1) %>%
+    rename(source = from, target = to)
+) %>%
+  write_json("interactome.json")
+```
+
+
+```{r}
+G %E>% 
+  pull(centrality) %>%
+  cut(100) %>%
+  table() %>%
+  as_tibble() %>%
+  mutate(
+    bin_ix = row_number(),
+    bin_start = as.numeric(str_extract(`.`, "[\\-0-9\\.]+"))
+  ) %>%
+  set_names(c("bin", "n", "bin_ix", "bin_start")) %>%
+  write_json("centrality_bins.json")
+```
+

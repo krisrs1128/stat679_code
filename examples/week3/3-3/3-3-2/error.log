@@ -1,0 +1,166 @@
+Preparing to deploy application...During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+DONE
+Uploading bundle for application: 403...DONE
+Deploying bundle: 2180 for application: 403 ...
+[Connect] Building Shiny application...
+[Connect] Bundle created with R version 4.2.1 is compatible with environment Local with R version 4.2.1 from /opt/R/4.2.1/bin/R 
+[Connect] Bundle requested R version 4.2.1; using /opt/R/4.2.1/bin/R which has version 4.2.1
+[Connect] 2022/09/12 22:54:35.539406114 Using user agent string: 'RStudio R (4.2.1 x86_64-pc-linux-gnu x86_64 linux-gnu)' 
+[Connect] 2022/09/12 22:54:35.539476182 Running on host: ip-10-0-0-183
+[Connect] 2022/09/12 22:54:35.857051820 Linux distribution: Ubuntu 18.04.6 LTS (bionic) 
+[Connect] 2022/09/12 22:54:35.857899967 R version: 4.2.1
+[Connect] 2022/09/12 22:54:35.857993378 # Validating R library read / write permissions --------------------------------
+[Connect] 2022/09/12 22:54:35.858229225 Using R library for packrat bootstrap: /opt/rstudio-connect/mnt/R/4.2.1
+[Connect] 2022/09/12 22:54:35.858363041 # Validating managed packrat installation --------------------------------------
+[Connect] 2022/09/12 22:54:35.858626930 Vendored packrat archive: /opt/rstudio-connect/ext/R/packrat_0.5.0-31_6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d.tar.gz
+[Connect] 2022/09/12 22:54:35.868459629 Vendored packrat SHA: 6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d
+[Connect] 2022/09/12 22:54:35.869676597 Managed packrat SHA:  6a5fcedfcc31a7b1b5e89ecff6c0916a77648e0d
+[Connect] 2022/09/12 22:54:35.870468450 Managed packrat version: 0.5.0.31
+[Connect] 2022/09/12 22:54:35.870734964 Managed packrat is up-to-date.
+[Connect] 2022/09/12 22:54:35.870943287 # Validating packrat cache read / write permissions ----------------------------
+[Connect] 2022/09/12 22:54:35.875513604 Using packrat cache directory: /opt/rstudio-connect/mnt/packrat/4.2.1
+[Connect] 2022/09/12 22:54:35.926187976 Audited package hashes with local packrat installation.
+[Connect] 2022/09/12 22:54:35.935001064 Package repository URLs are being overridden with the following values:
+[Connect] 2022/09/12 22:54:35.935009471 Repository: CRAN = https://cran.rstudio.com/
+[Connect] 2022/09/12 22:54:35.935035658 Repository: RSPM = http://rstudio-manager.it.wisc.edu/cran/__linux__/bionic/latest 
+[Connect] 2022/09/12 22:54:35.940699826 # Installing required R packages with `packrat::restore()` ---------------------
+[Connect] 2022/09/12 22:54:35.976694704 Installing R6 (2.5.1) ... 
+[Connect] 2022/09/12 22:54:35.982676453 Using cached R6.
+[Connect] 2022/09/12 22:54:35.982798420 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:35.982908403 Installing Rcpp (1.0.9) ... 
+[Connect] 2022/09/12 22:54:35.988106270 Using cached Rcpp.
+[Connect] 2022/09/12 22:54:35.988227440 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:35.988334305 Installing base64enc (0.1-3) ... 
+[Connect] 2022/09/12 22:54:35.992537147 Using cached base64enc.
+[Connect] 2022/09/12 22:54:35.992652611 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:35.992763022 Installing commonmark (1.8.0) ... 
+[Connect] 2022/09/12 22:54:35.997859585 Using cached commonmark.
+[Connect] 2022/09/12 22:54:35.997974941 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:35.998081208 Installing cpp11 (0.4.2) ... 
+[Connect] 2022/09/12 22:54:36.005242979 Using cached cpp11.
+[Connect] 2022/09/12 22:54:36.005356594 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.005454007 Installing crayon (1.5.1) ... 
+[Connect] 2022/09/12 22:54:36.010501952 Using cached crayon.
+[Connect] 2022/09/12 22:54:36.010624474 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.010723827 Installing digest (0.6.29) ... 
+[Connect] 2022/09/12 22:54:36.015807943 Using cached digest.
+[Connect] 2022/09/12 22:54:36.015929763 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.016040307 Installing fastmap (1.1.0) ... 
+[Connect] 2022/09/12 22:54:36.020994891 Using cached fastmap.
+[Connect] 2022/09/12 22:54:36.021116087 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.021222286 Installing fs (1.5.2) ... 
+[Connect] 2022/09/12 22:54:36.027136299 Using cached fs.
+[Connect] 2022/09/12 22:54:36.027249504 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.027354328 Installing glue (1.6.2) ... 
+[Connect] 2022/09/12 22:54:36.033021112 Using cached glue.
+[Connect] 2022/09/12 22:54:36.033139438 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.033248620 Installing jsonlite (1.8.0) ... 
+[Connect] 2022/09/12 22:54:36.040135021 Using cached jsonlite.
+[Connect] 2022/09/12 22:54:36.040251331 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.040360249 Installing magrittr (2.0.3) ... 
+[Connect] 2022/09/12 22:54:36.045865686 Using cached magrittr.
+[Connect] 2022/09/12 22:54:36.045978222 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.046075114 Installing mime (0.12) ... 
+[Connect] 2022/09/12 22:54:36.050810696 Using cached mime.
+[Connect] 2022/09/12 22:54:36.050935401 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.051033771 Installing rappdirs (0.3.3) ... 
+[Connect] 2022/09/12 22:54:36.056608814 Using cached rappdirs.
+[Connect] 2022/09/12 22:54:36.056724012 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.056831647 Installing rlang (1.0.5) ... 
+[Connect] 2022/09/12 22:54:36.062912477 Using cached rlang.
+[Connect] 2022/09/12 22:54:36.063030771 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.063141368 Installing sourcetools (0.1.7) ... 
+[Connect] 2022/09/12 22:54:36.067874687 Using cached sourcetools.
+[Connect] 2022/09/12 22:54:36.067998794 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.068104364 Installing withr (2.5.0) ... 
+[Connect] 2022/09/12 22:54:36.074105105 Using cached withr.
+[Connect] 2022/09/12 22:54:36.074242191 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.074341338 Installing xtable (1.8-4) ... 
+[Connect] 2022/09/12 22:54:36.081216069 Using cached xtable.
+[Connect] 2022/09/12 22:54:36.081333302 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.081441929 Installing systemfonts (1.0.4) ... 
+[Connect] 2022/09/12 22:54:36.089022062 Using cached systemfonts.
+[Connect] 2022/09/12 22:54:36.089142777 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.089245225 Installing cachem (1.0.6) ... 
+[Connect] 2022/09/12 22:54:36.094026182 Using cached cachem.
+[Connect] 2022/09/12 22:54:36.094144560 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.094254979 Installing ellipsis (0.3.2) ... 
+[Connect] 2022/09/12 22:54:36.099159686 Using cached ellipsis.
+[Connect] 2022/09/12 22:54:36.099292370 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.099388547 Installing htmltools (0.5.3) ... 
+[Connect] 2022/09/12 22:54:36.105218040 Using cached htmltools.
+[Connect] 2022/09/12 22:54:36.105333104 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.105433343 Installing later (1.3.0) ... 
+[Connect] 2022/09/12 22:54:36.112697040 Using cached later.
+[Connect] 2022/09/12 22:54:36.112824177 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.112924382 Installing lifecycle (1.0.1) ... 
+[Connect] 2022/09/12 22:54:36.119885296 Using cached lifecycle.
+[Connect] 2022/09/12 22:54:36.120016090 	OK (symlinked cache)
+[Connect] 2022/09/12 22:54:36.120115310 Installing textshaping (0.3.6) ... 
+[Connect] 2022/09/12 22:54:36.325323474 curl: HTTP 200 https://cran.rstudio.com/src/contrib/PACKAGES.rds
+[Connect] 2022/09/12 22:54:37.337046743 curl: HTTP 200 https://cran.rstudio.com/src/contrib/textshaping_0.3.6.tar.gz
+[Connect] 2022/09/12 22:54:37.665965170 [1] "Command failed (1)\n\nFailed to run system command:\n\n\t'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/Rtmp6BBudJ/packrat-install-318278774b52/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo \n\nThe command failed with output:\n* installing *source* package ‘textshaping’ ...\n** package ‘textshaping’ successfully unpacked and MD5 sums checked\n** using staged installation\nPackage fribidi was not found in the pkg-config search path.\nPerhaps you should add the directory containing `fribidi.pc'\nto the PKG_CONFIG_PATH environment variable\nNo package 'fribidi' found\nUsing PKG_CFLAGS=\nUsing PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng\n--------------------------- [ANTICONF] --------------------------------\nConfiguration failed to find the harfbuzz freetype2 fribidi library. Try installing:\n * deb: libharfbuzz-dev libfribidi-de
+[Connect] v (Debian, Ubuntu, etc)\n * rpm: harfbuzz-devel fribidi-devel (Fedora, EPEL)\n * csw: libharfbuzz_dev libfribidi_dev (Solaris)\n * brew: harfbuzz fribidi (OSX)\nIf harfbuzz freetype2 fribidi is already installed, check that 'pkg-config' is in your\nPATH and PKG_CONFIG_PATH contains a harfbuzz freetype2 fribidi.pc file. If pkg-config\nis unavailable you can set INCLUDE_DIR and LIB_DIR manually via:\nR CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'\n-------------------------- [ERROR MESSAGE] ---------------------------\n<stdin>:1:10: fatal error: hb-ft.h: No such file or directory\ncompilation terminated.\n--------------------------------------------------------------------\nERROR: configuration failed for package ‘textshaping’\n* removing ‘/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1/textshaping’"
+[Connect] 2022/09/12 22:54:37.667520979 Error: Command failed (1)
+[Connect] 2022/09/12 22:54:37.667527873 
+[Connect] 2022/09/12 22:54:37.667549663 Failed to run system command:
+[Connect] 2022/09/12 22:54:37.667550404 
+[Connect] 2022/09/12 22:54:37.667558337 	'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/Rtmp6BBudJ/packrat-install-318278774b52/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo 
+[Connect] 2022/09/12 22:54:37.667572529 
+[Connect] 2022/09/12 22:54:37.667587983 The command failed with output:
+[Connect] 2022/09/12 22:54:37.667588850 * installing *source* package ‘textshaping’ ...
+[Connect] 2022/09/12 22:54:37.667596456 ** package ‘textshaping’ successfully unpacked and MD5 sums checked
+[Connect] 2022/09/12 22:54:37.667597329 ** using staged installation
+[Connect] 2022/09/12 22:54:37.667604028 Package fribidi was not found in the pkg-config search path.
+[Connect] 2022/09/12 22:54:37.667604543 Perhaps you should add the directory containing `fribidi.pc'
+[Connect] 2022/09/12 22:54:37.667611028 to the PKG_CONFIG_PATH environment variable
+[Connect] 2022/09/12 22:54:37.667611858 No package 'fribidi' found
+[Connect] 2022/09/12 22:54:37.667618217 Using PKG_CFLAGS=
+[Connect] 2022/09/12 22:54:37.667619104 Using PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng
+[Connect] 2022/09/12 22:54:37.667625899 --------------------------- [ANTICONF] --------------------------------
+[Connect] 2022/09/12 22:54:37.667626513 Configuration failed to find the harfbuzz freetype2 fribidi library. Try installing:
+[Connect] 2022/09/12 22:54:37.667636961  * deb: libharfbuzz-dev libfribidi-dev (Debian, Ubuntu, etc)
+[Connect] 2022/09/12 22:54:37.667637618  * rpm: harfbuzz-devel fribidi-devel (Fedora, EPEL)
+[Connect] 2022/09/12 22:54:37.667643842  * csw: libharfbuzz_dev libfribidi_dev (Solaris)
+[Connect] 2022/09/12 22:54:37.667644281  * brew: harfbuzz fribidi (OSX)
+[Connect] 2022/09/12 22:54:37.667650152 If harfbuzz freetype2 fribidi is already installed, check that 'pkg-config' is in your
+[Connect] 2022/09/12 22:54:37.667650623 PATH and PKG_CONFIG_PATH contains a harfbuzz freetype2 fribidi.pc file. If pkg-config
+[Connect] 2022/09/12 22:54:37.667656433 is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+[Connect] 2022/09/12 22:54:37.667656992 R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'
+[Connect] 2022/09/12 22:54:37.667663017 -------------------------- [ERROR MESSAGE] ---------------------------
+[Connect] 2022/09/12 22:54:37.667663472 <stdin>:1:10: fatal error: hb-ft.h: No such file or directory
+[Connect] 2022/09/12 22:54:37.667669998 compilation terminated.
+[Connect] 2022/09/12 22:54:37.667670440 --------------------------------------------------------------------
+[Connect] 2022/09/12 22:54:37.667676414 ERROR: configuration failed for package ‘textshaping’
+[Connect] 2022/09/12 22:54:37.667676830 * removing ‘/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1/textshaping’
+[Connect] 2022/09/12 22:54:37.667682515 
+[Connect] 2022/09/12 22:54:37.667682945 Unable to fully restore the R packages associated with this deployment.
+[Connect] 2022/09/12 22:54:37.667688647 Please review the preceding messages to determine which package
+[Connect] 2022/09/12 22:54:37.667689077 encountered installation difficulty and the cause of the failure.
+[Connect] 2022/09/12 22:54:37.666298131 Error code: r-missing-system-library
+[Connect] An R package cannot be installed because a required system-level dependency is missing.
+[Connect] Possible causes:
+[Connect] * An R package requires a system-level dependency, such as a library or executable, which is not installed on the Connect server.
+[Connect] 
+[Connect] Possible solutions:
+[Connect] * Install the required package using your system package manager (such as apt or yum).
+[Connect] * If you have RStudio Package Manager, open the information page for the affected R package. Installation instructions for the package's system-level dependencies are included under the Install System Prerequisites heading
+[Connect] * Otherwise, use the messages in the deployment log to identify which system package you need to install.
+[Connect] 
+[Connect] References:
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#redhat-package-dependencies
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#suse-package-dependencies
+[Connect] * https://docs.rstudio.com/connect/admin/getting-started/#ubuntu-package-dependencies
+[Connect] 
+[Connect] 2022/09/12 22:54:37.666298131 Additional data:
+[Connect] SystemPackage: 'fribidi'
+[Connect] Package: 'textshaping'
+[Connect] PackageVersion: '0.3.6'
+[Connect] Found in the following log entry:
+[Connect] 2022/09/12 22:54:37.665965170 [1] "Command failed (1)\n\nFailed to run system command:\n\n\t'/opt/R/4.2.1/lib/R/bin/R' --vanilla CMD INSTALL --preclean '/opt/rstudio-connect/mnt/tmp/Rtmp6BBudJ/packrat-install-318278774b52/textshaping' --library='/opt/rstudio-connect/mnt/app/packrat/lib/x86_64-pc-linux-gnu/4.2.1' --install-tests --no-docs --no-multiarch --no-demo \n\nThe command failed with output:\n* installing *source* package ‘textshaping’ ...\n** package ‘textshaping’ successfully unpacked and MD5 sums checked\n** using staged installation\nPackage fribidi was not found in the pkg-config search path.\nPerhaps you should add the directory containing `fribidi.pc'\nto the PKG_CONFIG_PATH environment variable\nNo package 'fribidi' found\nUsing PKG_CFLAGS=\nUsing PKG_LIBS=-lfreetype -lharfbuzz -lfribidi -lpng\n--------------------------- [ANTICONF] --------------------------------\nConfiguration failed to find the harfbuzz freetype2 fribidi library. Try installing:\n * deb: libharfbuzz-dev libfribidi-de
+[Connect] Build error: An R package cannot be installed because a required system-level dependency is missing. (r-missing-system-library)
+Application deployment failed with error: An R package cannot be installed because a required system-level dependency is missing. (r-missing-system-library)

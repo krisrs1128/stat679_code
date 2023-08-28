@@ -1,0 +1,83 @@
+---
+title: Graphical Queries - Brush Events
+layout: post
+output: 
+  md_document:
+    preserve_yaml: true
+---
+
+_An introduction to brush events in Shiny_
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week3-2.Rmd), [Recording](https://mediaspace.wisc.edu/media/Week%203%20-%202%3A%20Graphical%20Queries%20-%20Brush%20Events/1_y2dyjzbd)
+
+```{r, echo = FALSE}
+library(knitr)
+opts_knit$set(base_dir = "/", base.url = "/")
+opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE,
+  fig.path = "stat679_notes/assets/week3-2/"
+  )
+```
+
+1. Click events are useful for referring to individual samples. However, they
+are not ideal for referring to groups of samples. In this case, a useful type of
+plot input is a `brush`. This is a selection that can be defined by clicking and
+dragging over a region.
+
+1. In shiny, brush events are treated similarly to click events. For example, to
+define a new brush input, we can set the `brush` argument to `plotOutput`.
+
+    ```{r, eval = FALSE}
+    ui <- fluidPage(
+      plotOutput("plot", brush = "plot_brush")
+    )
+    ```
+  
+    Just like the `click` argument, the value `"plot_brush"` is an ID that can be
+    used in the server. Also like in click events, we can setup an observer to
+    change a reactive value every time a brush is drawn^[Technically, the code
+    only executes when the mouse lifts off the brush selection. Some
+    visualizations will be able to call the updating code every time the mouse is
+    moved with the brush selected. This creates a smoother experience.]. The
+    general pattern is similar to what we had before,
+      
+    ```{r, eval = FALSE}
+    server <- function(input, output) {
+      selected <- reactiveVal(initial value)
+      observeEvent(
+        input$plot_brush,
+        ... computation using get new_value ...
+        selected(new_value)
+      )
+      
+      output$plot <- renderPlot(... use scatter() reactive val...)
+    }
+    ```
+    
+1. The example below is similar to the `plot_click` example from the previous
+notes. Instead of sorting points by proximity to the click, though, prints the
+subset of rows that have been currently brushed.
+
+    ```{r code=readLines("https://raw.githubusercontent.com/krisrs1128/stat479_s22/main/_posts/2022-02-16-week05-02/apps/app3.R"), eval = FALSE}
+    ```
+    
+    <iframe src="https://data-viz.it.wisc.edu/content/a651bc7b-6773-445d-8bc6-22084155e21a/" allowfullscreen="" data-external="1" height=700 width=600></iframe>
+
+1. It is often useful to combine multi-view composition (_i.e._, faceting or
+compound figures) with dynamic queries. The basic idea is to (a) show different
+aspects of a dataset using different views, and then (b) link the views using
+dynamic queries. This strategy is sometimes called dynamic linking.
+
+1. The example below implements dynamic linking with the penguins dataset.
+Brushing over either scatterplot highlights the corresponding points in the
+adjacent plot (it also updates the data table). This is a way of understanding
+structure beyond two dimensions. The implementation is similar to the brushing
+above, except that the reactive value `selected()` is called in two `renderPlot`
+contexts, leading to changes in both plots every time the brush is moved.
+
+    ```{r code=readLines("https://raw.githubusercontent.com/krisrs1128/stat479_s22/main/_posts/2022-02-16-week05-02/apps/app4.R"), eval = FALSE}
+    ```
+    
+    <iframe src="https://data-viz.it.wisc.edu/content/8e4b07a5-d671-40cb-9d57-22d25533b8fe/" allowfullscreen="" data-external="1" height=800 width=600></iframe>
+    

@@ -1,0 +1,57 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(tidygraph)
+library(ggraph)
+library(jsonlite)
+```
+
+
+
+```{r}
+library(ndtv)
+
+data(short.stergm.sim)
+short.stergm.sim 
+```
+
+```{r}
+data(toy_epi_sim)
+toy_epi_sim
+```
+```{r}
+library(tidyverse)
+library(tidygraph)
+
+toy_epi_sim <- deactivate.vertex.attribute(toy_epi_sim, "ndtvcol.active")
+toy_epi_sim <- deactivate.vertex.attribute(toy_epi_sim, "testatus.active")
+
+G <- list()
+times <- seq(1, 20, by = 3)
+for (i in seq_along(times)) {
+  G[[i]] <- network.collapse(toy_epi_sim, onset = times[i], length = 3, rule = "any")  %>%
+    as_tbl_graph() %>%
+    mutate(id = vertex.pid) %E>%
+    as_tibble() %>%
+    mutate(window = i)
+}
+```
+
+
+```{r, fig.width = 8, fig.height = 3}
+G2 <- as_tbl_graph(bind_rows(G))
+ggraph(G2, layout = "stress") +
+  geom_edge_link() +
+  geom_node_point() +
+  facet_wrap(~ window, ncol = 4)
+```
+
+
+
+```{r}
+render.d3movie(toy_epi_sim)
+```

@@ -1,0 +1,29 @@
+---
+title: Shiny Layouts and Customization
+layout: post
+output: 
+  md_document:
+    preserve_yaml: true
+---
+
+__More flexible designs in Shiny__
+
+```{r, echo = FALSE}
+library(knitr)
+opts_chunk$set(
+  warning = FALSE, 
+  message = FALSE
+  )
+```
+
+```{r}
+library(tidyverse)
+library(dslabs)
+library(jsonlite)
+gapminder %>%
+  mutate(lpop = log(population)) %>%
+  select(country, year, life_expectancy, population, lpop, continent) %>%
+  filter(year < 2016) %>%
+  write_csv("gapminder.csv")
+```
+

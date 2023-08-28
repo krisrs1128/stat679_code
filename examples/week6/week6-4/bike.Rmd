@@ -1,0 +1,35 @@
+---
+title: "bike"
+output: html_document
+date: "`r Sys.Date()`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library(jsonlite)
+```
+
+```{r}
+bike <- read_csv("https://uwmadison.box.com/shared/static/f16jmkkskylfl1hnd5rpslzduja929g2.csv") %>%
+  filter(weekday > 0, weekday < 3, yr == 0)
+```
+```{r}
+series <- bike %>%
+  select(dteday, hr, count) %>%
+  nest(any_of(c("hr", "count"))) %>%
+  split(.$dteday) %>%
+  map(~ mutate(.$data[[1]], dteday = .$dteday))
+names(series) <- NULL
+```
+
+```{r}
+data_list <- list(
+  "scatter" = bike %>% select(dteday, temp, hum),
+  "series" = series
+)
+
+write_json(data_list, "bike.json")
+```

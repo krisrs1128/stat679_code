@@ -1,0 +1,16 @@
+
+#line path {
+  fill: none;
+  stroke: #a8a8a8;
+  stroke-width: 3px;
+}
+
+#axes path {
+  stroke: #0c0c0c;
+  stroke-width: 1;
+}
+
+#axes line {
+  stroke: #0c0c0c;
+  stroke-width: 1;
+}

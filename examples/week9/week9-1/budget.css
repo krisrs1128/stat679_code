@@ -1,0 +1,12 @@
+
+#tree path {
+  fill: none;
+  stroke: #0c0c0c;
+  stroke-width: .5;
+}
+
+#tree rect {
+  stroke: #0c0c0c;
+  fill: none;
+  stroke-width: 1px;
+}

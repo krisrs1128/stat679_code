@@ -1,0 +1,30 @@
+﻿dataset,link,source,category,description,visualization,package,submission_date
+netflix,https://www.kaggle.com/code/sarfarazmulla/netflix-data-analysis/data,kaggle,arts and entertainment,"How many movies vs. tv shows are on netflix, by rating.",filled barplot,ggplot2,9/7/22
+fifa rankings,https://www.kaggle.com/datasets/brenda89/fifa-world-cup-2022,kaggle,sports,"How did Brazil, Belgium, and Portugal ranks evolve historically?",multiple lineplot,base R,9/7/22
+madison trees,https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::street-trees/about,Madison Open Data,civic,How do tree diameters vary across the isthmus?,geospatial point plot,ggplot2,9/7/22
+development and corruption,https://drive.google.com/file/d/1ZBXsJZYiksFZGrXPW93bZlnAPPmQXmLp/view?usp=sharing,NA,global,How does development correlate with corruption?,scatterplot,ggplot2,9/7/22
+internet service churn,https://www.kaggle.com/mehmetsabrikunt/internet-service-churn,kaggle,technology,How are different internet service features correlated across the customer base?,correlation matrix,matplotlib,9/7/22
+cross-country life satisfaction,https://www.kaggle.com/datasets/programmerrdai/happiness-and-life-satisfaction?resource=download,kaggle,global,How does life satisfaction vary across continents?,multiple boxplot,base R,9/10/22
+swiggy food delivery,https://www.kaggle.com/datasets/chinmayshanbhag/swiggy-restaurants-top-50-cities-population,kaggle,food,How do swiggy ratings vary across cities?,lineplot,ggplot2,9/7/22
+european country GDPs,https://www.kaggle.com/datasets/samuelcortinhas/gdp-of-european-countries,kaggle,global,How do country GDPs change over time?,multiple lineplot,ggplot2,9/11/22
+twitter news,https://www.kaggle.com/datasets/deeguy/twitter-news?select=news_tweets.csv,kaggle,journalism,Which words most commonly appear in tweets?,word cloud,base R,9/7/22
+madison police reports,https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::police-incident-reports/about,Madison Open Data,civic,What crimes types are most common in Madison?,barplot,ggplot2,9/10/22
+watch prices,https://www.kaggle.com/datasets/sanjaysbisht/watchesdataset01,kaggle,arts and entertainment,Which watch brands have the highest nad lowest prices?,barplot,matplotlib,9/7/22
+ferris wheels,https://github.com/EmilHvitfeldt/ferriswheels,github,arts and entertainment,Are large ferris wheels climate controlled?,faceted scatterplot,ggplot2,9/7/22
+political blogs,https://rdrr.io/github/barrpet/gclust/man/polblogs.html,github,politics,How are political news blogs clustered?,network,networkD3,9/8/22
+chocolate ratings,https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv,tidy Tuesday,food,How do chocolate ratings vary as a function of cocoa content?,multiple boxplot,base R,9/7/22
+data science salaries,https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries?resource=download,kaggle,career,How do sdata science salaries vary across skillsets?,multiple boxplot,base R,9/7/22
+premier league goals,https://www.kaggle.com/datasets/rishikeshkanabar/premier-league-player-statistics-updated-daily?resource=download,kaggle,sports,Which country's players have the most premier league goals?,barplot,base R,9/7/22
+house prices,https://www.kaggle.com/datasets/iamsouravbanerjee/house-rent-prediction-dataset?select=House_Rent_Dataset.csv,kaggle,business,What features make homes more or less expensive?,faceted scatterplot,ggplot2,9/10/22
+Retail store sales,https://docs.google.com/spreadsheets/d/1m1jSbHNauPSSvJfWnu8ALGUQVV3m_7Au/edit?usp=sharing&ouid=103329087198338159869&rtpof=true&sd=true,NA,business,Which regions have the most supplies of which products?,faceted barplot,tableau,9/7/22
+human resources metrics,https://www.kaggle.com/datasets/rhuebner/human-resources-data-set,kaggle,business,How many absences are typical in this company?,histogram,ggplot2,9/7/22
+national federal reserve,https://fred.stlouisfed.org/,FRED,politics,How has the national federal reserve changed over time?,lineplot,matplotlib,9/7/22
+bookstore,https://www.kaggle.com/datasets/sbonelondhlazi/bookstore-dataset?resource=download,kaggle,arts and entertainment,Which factors influence book prices in this bookstore?,correlation matrix,matplotlib,9/10/22
+la crimes,https://data.lacity.org/Public-Safety/Crime-Data-from-2020-to-Present/2nrs-mtv8/data,LA Open Data,civic,How old are crime victims?,histogram,base R,9/9/22
+billboard hot 100,https://www.kaggle.com/datasets/sausen7/billboards-dataset,kaggle,arts and entertainment,"Which artists had the most hits in the week of March 24, 2020?",barplot,ggplot2,9/7/22
+world science rankings,https://www.kaggle.com/datasets/yasirabdaali/world-science-rankings-dataset?select=all+subjects.csv,kaggle,science,What is the distribution of country-level H-indices?,histogram,matplotlib,9/7/22
+data science salaries (glassdoor),https://www.kaggle.com/datasets/nikhilbhathi/data-scientist-salary-us-glassdoor,kaggle,career,Which states have the best-paid data scientists?,filled barplot,ggplot2,9/7/22
+tiktok music,https://www.kaggle.com/datasets/sveta151/tiktok-popular-songs-2020?select=TikTok_songs_2020.csv,kaggle,arts and entertainment,Do people like energetic songs on tiktok?,histogram,ggplot2,9/7/22
+data science salaries,https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries,kaggle,career,How have data science salaries changed over time?,multiple boxplot,base R,9/10/22
+MLB statcast,https://billpetti.github.io/2021-04-02-build-statcast-database-rstats-version-3.0/,github,sports,How does pitch location affect hit probability?,heatmap,ggplot2,9/7/22
+data science salaries,https://www.kaggle.com/datasets/ruchi798/data-science-job-salaries,kaggle,career,How do salaries vary across job titles?,multiple boxplot,base R,9/9/22

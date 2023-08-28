@@ -1,0 +1,19 @@
+
+#series path {
+  fill: none;
+}
+
+#axes path {
+  stroke: #0c0c0c;
+  stroke-width: 1;
+}
+
+#axes line {
+  stroke: #0c0c0c;
+  stroke-width: 1;
+}
+
+#scatter circle {
+  fill: #0c0c0c;
+  r: 2;
+}

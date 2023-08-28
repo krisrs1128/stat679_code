@@ -1,0 +1,13 @@
+---
+title: "R Notebook"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+movies <- read_csv("movies.csv")
+movies %>%
+  filter(IMDB_Rating > 0 | Rotten_Tomatoes_Rating > 0) %>%
+  count(Genre_Group) %>%
+  write_csv("stats.csv")
+```

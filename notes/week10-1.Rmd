@@ -1,0 +1,174 @@
+---
+title: Structured Graphs
+layout: post
+output:
+  md_document:
+    preserve_yaml: true
+---
+
+_Representing known structure in graphs_
+
+[Code](https://github.com/krisrs1128/stat679_code/blob/main/notes/week10-1.Rmd), [Recording](https://mediaspace.wisc.edu/media/Week%2010%20-%201%3A%20Structured%20Graphs/1_fafxe09y)
+
+```{r, echo = FALSE}
+library(knitr)
+opts_knit$set(base_dir = "/", base.url = "/")
+opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  fig.path = "stat679_notes/assets/week10-1/"
+)
+```
+
+1. Graph layouts can often benefit from additional information known about the
+structure of the graph or purpose of the visualization. These notes describe a
+few of the situations that arise most frequently in practice.
+
+1. When there is no additional structure / specific purpose, a reasonable
+default for node-link diagrams uses force-directed layout, as discussed previously. In this layout, we
+think of nodes as particles that want to repel one another, but which are tied
+together by elastic edges.
+
+1. One common situation where we can go beyond force-directed graphs is when we
+have additional information about the nodes that can be used to constrain their
+position. For example, the Royal Constellations visualization, attempts to
+visualize the family trees of royal families. On the y-axis, the nodes are
+constrained to be sorted by year, and across the x-axis, nodes are constrained
+according to the country of the royal family.
+
+    <iframe src="https://royalconstellations.visualcinnamon.com/" width=800 height=500></iframe>
+
+1. More generally, we can define x and y-axis constraints and then use a
+force-directed algorithm to layout the nodes, subject to those constraints.
+These can be implemented by combining D3 with the [cola library](https://ialab.it.monash.edu/webcola/). For example, we've simulated data that are known to fall into three tight clusters, but using a naive force-directed layout leads to clusters that cross one another.
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-1/cola-example.html" data-external="1" height=400 width=500></iframe>
+
+1. To resolve this, we can explicitly tell the layout algorithm to constrain the x-coordinates for nodes within each cluster.
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-1/cola-example-2.html" data-external="1" height=400 width=500></iframe>
+
+    To accomplish this, we defined an array of objects specifying pixel
+    constraints between pairs of nodes; e.g., `{"axis":"y", "left":0, "right":1,
+    "gap":25}` says that node 1 should be (at least) 25 pixels above node 0.
+
+    ```{r eval = FALSE}
+let constrained = cola.d3adaptor()
+  .nodes(nodes)
+  .links(links)
+  .constraints(constraints)
+  .groups(groups)
+  .start()
+    ```
+
+1. Another common situation is that the nodes can be organized into a hierarchy
+of subgraphs. That is, nodes can be partitioned into non-overlapping sets. These
+sets can themselves be merged together to define a coarser partition.
+
+1. This hierarchical structure can be encoded in either node-link or adjacency
+matrix visualizations. For example, in node-link views, we can draw shapes
+enclosing the sets,
+
+    ```{r, out.width = 350, echo = FALSE, fig.align = "center"}
+    include_graphics("stat679_notes/assets/week10-1/graph-hierarchy.png")
+    ```
+
+	and in adjacency matrices, we can draw trees specifying the hierarchy.
+
+    ```{r, out.width = 200, echo = FALSE, fig.align = "center"}
+    include_graphics("stat679_notes/assets/week10-1/matlink.png")
+    ```
+  Here is an example implementation, again using [the Cola library](https://ialab.it.monash.edu/webcola/examples/smallgroups.html). Notice how nodes across groups always remain separated from one another.
+
+    <iframe src="https://ialab.it.monash.edu/webcola/examples/smallgroups.html" data-external="1" height=350 width=700></iframe>
+
+1. Here is a simplified implementation that draws a boundary around groups of
+nodes without the help of the cola library. In addition to drawing nodes and links, it adds (and fills in) paths that
+contain the separate sets.
+
+    <iframe src="https://krisrs1128.github.io/stat679_code/examples/week10/week10-1/miserables-group.html" data-external="1" height=400 width=500></iframe>
+
+1. Specifically, each time the `d3.force()` simulation ticks, it calculates the
+convex hull of the set of nodes within each group using `convex_hull()`, which
+is a light wrapper we have prepared around the existing [`d3.polygonHull`
+function](https://observablehq.com/@d3/d3-polygonhull). This returns an array of
+`x` and `y` coordinates for the group boundary. This is then use to draw a path
+that loops in on itself. We fill in the loops according to which group number it
+corresponds to.
+
+    ```{r eval = FALSE}
+d3.select("#hulls")
+  .selectAll("path")
+  .data(convex_hull(nodes))
+  .attrs({
+        d: path_generator,
+        fill: (d, i) => scales.fill(i)
+  })
+    ```
+
+1. In some graphs, we have clustering structure. Within each cluster, nodes are
+densely connected, but between clusters, there are only a few links. In this
+case, it’s natural to use adjacency matrices to visualize the clusters and then
+draw links for connections between adjacency matrices. The reasoning is that
+adjacency matrices are better suited in densely connected graphs (they don’t
+have the edge crossing problem) but node-link encodings are better when we want
+to follow longer paths across clusters. Below, I've included a screenshot from
+the paper that introduced this layout approach,
+
+    ```{r, echo = FALSE, fig.align = "center"}
+    include_graphics("stat679_notes/assets/week10-1/NodeTrix.png")
+    ```
+
+    Though it would be a nontrivial implementation, I hope you can at least get
+    a rough idea about how we could begin to implement something like this using
+    D3. We already know how to draw adjacency matrices as collections of
+    appended rectangles. We could imagine appending each of these rectangles to
+    separate group elements. If we knew the links between groups, we could run a
+    `d3.force()` simulation to arrange groups in a nice layout. We could then
+    append lines between the groups (or, if we want to more completely emulate
+    the smooth links of figure, we could try a kind of [curve or link generator](https://github.com/d3/d3-shape/blob/main/README.md)).
+
+1. This is just one example of a larger class of “hybrid” matrix encodings.
+It’s possible to solve a variety of visual problems, just by cleverly combining
+the elementary visual encodings discussed last week.
+
+1. So far, we have focused on high-level properties of the graph that can be
+accounted for in visualization. Sometimes, the intended function of the
+visualization warrants thinking at a low-level instead. For example, in many
+problems, we are interested in studying ego-networks — the small neighborhoods
+that surround specific nodes of interest.
+
+1. One example of a layout that was designed to support ego-network
+visualization is the egoCompare system. This is a kind of overview + detail
+graph visualization where users can select pairs of nodes to compare within an
+overview graph. The 2-nearest-neighbor graphs for each of these selected nodes
+are then shown (and linked together, if applicable). The subgraphs are arranged
+in a way that minimizes the amount of crossing.
+
+    ```{r, echo = FALSE, fig.align = "center"}
+    include_graphics("stat679_notes/assets/week10-1/ego_compare.jpeg")
+    ```
+
+1. The last type of graph we’ll consider in these notes are dynamic graphs.
+These are graphs where the sets of nodes and links are evolving over time. For
+example, the interactions between proteins in a protein interaction network may
+change when a cell is exposed to environmental stress, like the presence of a
+virus. There is no single way to visualize these networks, but common strategies
+include use of animation, faceting over time, combined encodings (like time
+series within nodes), or dynamic linking between coordinated views.
+
+1. For example, here is an animated view of conflicts between countries over
+time,
+
+    <iframe width="100%" height="500" frameborder="0"
+  src="https://observablehq.com/embed/@yaslena/dynamic-network-graph?cells=viewof+time%2Cchart"></iframe>
+
+    and here is a combined encoding of time series arranged along a graph, from the pathvis paper.
+
+    ```{r, out.width = 350, echo = FALSE, fig.align = "center"}
+    include_graphics("stat679_notes/assets/week10-1/pathvis.png")
+    ```
+
+1. In these notes, we’ve see some academic literature on visualization. Even if
+you are more practically oriented, this literature can be worth being familiar,
+if only because it can be a treasure trove of visual problem solving devices.
